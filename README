@@ -1,0 +1,17 @@
+Demo Matlab code for kernel ridge regression 'Testing_Set227_KRR.m'.
+Demo connectivity matrices of 10 subjects 'trans_data_set227_mat_cov_regressed.mat'.
+Demo external scores of 10 subjects 'trans_data_all_scores_set227.mat'.
+Name of the external measures 'trans_data_set227_all_names.mat'
+Demo covariates of 10 subjects 'trans_data_combined_update_cov_diag_set227.mat'. The covariates are age, sex (femle 1, male 0), race (white 1, non-white 0), English as primary language (1, non-English primary 0), and years of education. 
+
+
+Cognitive constructs definition 'construct6_network268_node_list.mat'.
+Yeo 7 network defnition 'Parc268toYeo7netlabel'
+Shen atlas 10 network definition 'Shen268_10network'
+
+
+To run the demo code 'Testing_Set227_KRR.m', first download all the files under the directory. In the Matlab .m file, please specify the path for the downloaded data and also the path for saving your results.
+
+There are a few options to choose in the code. For each subject, there 146 external measures. 1-124 are sub-scores of both cogntive and clinical measures. 125-140 are 16 cognitve scores. 141-146 are 6 clinical scores. You can choose which set of scores to predict by setting the value for the variable "nan_flg". Also one can choose to use different network defintion by setting the variable "yeo_flg". "scale_flg" is to choose different scale parameter used in the KRR. "error_flg" is to decide whether to save the prediction error for each cross validation runs. The final output is the performance of each network and of each iteration. 
+
+The options are similar for demo code 'Testing_Set227_KRR_combined_scores.m'.
