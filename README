@@ -15,3 +15,5 @@ To run the demo code 'Testing_Set227_KRR.m', first download all the files under 
 There are a few options to choose in the code. For each subject, there 146 external measures. 1-124 are sub-scores of both cogntive and clinical measures. 125-140 are 16 cognitve scores. 141-146 are 6 clinical scores. You can choose which set of scores to predict by setting the value for the variable "nan_flg". Also one can choose to use different network defintion by setting the variable "yeo_flg". "scale_flg" is to choose different scale parameter used in the KRR. "error_flg" is to decide whether to save the prediction error for each cross validation runs. The final output is the performance of each network and of each iteration. 
 
 The options are similar for demo code 'Testing_Set227_KRR_combined_scores.m'.
+
+The code has been tested under MATLAB Version: 9.4.0.813654 (R2018a)
