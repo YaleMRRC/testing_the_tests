@@ -1,3 +1,6 @@
+% This script apply kernel ridge regression to predict a composite score
+% It is derived from the main script "Testing_Set227_KRR.m"
+
 clear
 clc
 
@@ -126,9 +129,10 @@ bin_size = round( no_sub/fold);
 error_flg = 0;
 addpath /mridata2/mri_group/xilin_data/from_cuda3/matlab_code/
 
+% select the scores to be combined
 com_flg=2;
 
-for ll = 1: 1; %lambda_no
+for ll = 1: lambda_no
     
     disp(['lambda = ', num2str(lambda(ll))]);
     cur_lambda = lambda(ll);
@@ -144,9 +148,11 @@ for ll = 1: 1; %lambda_no
         all_perf_p = zeros(no_iter, no_beh, no_net);
     end
     
-    % combining the scores within two clusters
+    % combining the scores 
+    % two options of combination based on clustering results
+    % behavioral scores with similar prediction results are clustered together
     if( com_flg==1)
-        comb_id = [1 2 13 16];
+        comb_id = [1 2 13 16]; % the indices of the scores to be combined
     elseif( com_flg==2)
         comb_id = [3 5 11];
     end
@@ -213,7 +219,8 @@ for ll = 1: 1; %lambda_no
             train_norm = zeros( size( train_behav_orig));
             
             test_res_left = cur_behav_res(left_sub, :);
-            
+
+            % regress the covariates for each score individually within the training
             for cb = 1: comb_len;
                 [b, bint, train_behav_res] = regress( train_behav_orig(:, cb), [train_cov, ones(c_sub_no, 1)]);
                 
@@ -221,7 +228,8 @@ for ll = 1: 1; %lambda_no
                 train_mu = mean(train_behav_res);
                 train_std = std(train_behav_res);
                 train_norm(:, cb) = (train_behav_res-train_mu)/train_std;
-                
+
+                % normalize the regressed scores of the test set using the parameters from the training
                 cc(left_sub, cb) = (test_res_left(:,cb) -train_mu)/train_std;
                 
                 clear train_mu train_std;
