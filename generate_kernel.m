@@ -1,6 +1,11 @@
 function  [train_within, test_train] = generate_kernel(train_data, test_data, type, scale)
-
+% This function generates the kernel withing the training set and also kernel between the test and training set
+% 
 % data is #edge by #subjects
+% type is the type of kernel: correlation, Gaussian, and exponential
+% scale is the scale of the exponential or the Gaussian kernel
+% train_within is a matrix of no_training_subjects by no_training_subjects
+% test_train is a matrix of no_test_subjects by no_training_subjects
 
 K = size(train_data,1);
 mu1 = mean(train_data, 2);
