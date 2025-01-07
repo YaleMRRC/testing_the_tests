@@ -51,10 +51,10 @@ upp_id = find( aa_upp>0);
 upp_len = length(upp_id);
 
 
-yeo_flg = 1; % yeo network
+% yeo_flg = 1; % yeo network
 % yeo_flg = 3; % use DMN and Ev language
 % yeo_flg = 2; % use the whole brain
-% yeo_flg = 0; % use the constructs
+yeo_flg = 0; % use the constructs
 % yeo_flg =4; % use all 6 constructs combined
 
 if( yeo_flg==0)
@@ -155,7 +155,14 @@ for ll = 1: lambda_no
         comb_id = [1 2 13 16]; % the indices of the scores to be combined
     elseif( com_flg==2)
         comb_id = [3 5 11];
+    elseif( com_flg==3)
+        comb_id = [12 15];
+    elseif( com_flg==4)
+        comb_id = [4 6 7 10];
+    elseif( com_flg==5)
+        comb_id = [8 9];
     end
+    
     comb_len = length( comb_id);
     
     for iter = 1: no_iter
@@ -331,56 +338,37 @@ for ll = 1: lambda_no
     if( yeo_flg ==0)
         if( scale_flg ==0)
             if( nan_flg==1)
-                if( com_flg==1)
-                    save([save_path, 'trans_data_singlecon_KRR_10fold_normalized_allruns_set227_combinedscore_set1_lambda', num2str(ll)], 'all_perf_r', 'cur_lambda');
-                elseif( com_flg==2)
-                    save([save_path, 'trans_data_singlecon_KRR_10fold_normalized_allruns_set227_combinedscore_set2_lambda', num2str(ll)], 'all_perf_r', 'cur_lambda');
-                end
-                    
+                save([save_path, 'trans_data_singlecon_KRR_10fold_normalized_allruns_set227_combinedscore_set', num2str(com_flg), '_lambda', num2str(ll)], 'all_perf_r', 'cur_lambda');
             end
         end
         
     elseif( yeo_flg==1)
         if( scale_flg ==0)
             if( nan_flg==1)
-                if( com_flg==1)
-                    save([save_path, 'trans_data_yeonet_KRR_10fold_normalized_allruns_set227_combinedscore_set1_lambda', num2str(ll)], 'all_perf_r', 'cur_lambda');
-                elseif( com_flg==2)
-                    save([save_path, 'trans_data_yeonet_KRR_10fold_normalized_allruns_set227_combinedscore_set2_lambda', num2str(ll)], 'all_perf_r', 'cur_lambda');
-                end
+                save([save_path, 'trans_data_yeonet_KRR_10fold_normalized_allruns_set227_combinedscore_set', num2str(com_flg), '_lambda', num2str(ll)], 'all_perf_r', 'cur_lambda');
             end
             
         end
     elseif( yeo_flg==2)
         if( scale_flg ==0)
-            if( nan_flg==1)
-                if( com_flg==1)
-                    save([save_path, 'trans_data_wholebrain_KRR_10fold_normalized_allruns_set227_combinedscore_set1_lambda', num2str(ll)], 'all_perf_r', 'cur_lambda');
-                elseif( com_flg==2)
-                    save([save_path, 'trans_data_wholebrain_KRR_10fold_normalized_allruns_set227_combinedscore_set2_lambda', num2str(ll)], 'all_perf_r', 'cur_lambda');
-                end
+            if( nan_flg==1)               
+                save([save_path, 'trans_data_wholebrain_KRR_10fold_normalized_allruns_set227_combinedscore_set', num2str(com_flg), '_lambda', num2str(ll)], 'all_perf_r', 'cur_lambda');
             end
         end
         
     elseif( yeo_flg==3)
         if( scale_flg ==0)
             if( nan_flg==1)
-                if( com_flg==1)
-                    save([save_path, 'trans_data_dmnEv_KRR_10fold_normalized_allruns_set227_combinedscore_set1_lambda', num2str(ll)], 'all_perf_r', 'cur_lambda');
-                elseif( com_flg==2)
-                    save([save_path, 'trans_data_dmnEv_KRR_10fold_normalized_allruns_set227_combinedscore_set2_lambda', num2str(ll)], 'all_perf_r', 'cur_lambda');
-                end
+                save([save_path, 'trans_data_dmnEv_KRR_10fold_normalized_allruns_set227_combinedscore_set', num2str(com_flg), '_lambda', num2str(ll)], 'all_perf_r', 'cur_lambda');
+                
             end
             
         end
     elseif( yeo_flg==4)
         if( scale_flg ==0)
             if( nan_flg==1)
-                if( com_flg==1)
-                    save([save_path, 'trans_data_all6con_KRR_10fold_normalized_allruns_set227_combinedscore_set1_lambda', num2str(ll)], 'all_perf_r', 'cur_lambda');
-                elseif( com_flg==2)
-                    save([save_path, 'trans_data_all6con_KRR_10fold_normalized_allruns_set227_combinedscore_set2_lambda', num2str(ll)], 'all_perf_r', 'cur_lambda');
-                end
+                save([save_path, 'trans_data_all6con_KRR_10fold_normalized_allruns_set227_combinedscore_set', num2str(com_flg), '_lambda', num2str(ll)], 'all_perf_r', 'cur_lambda');
+                
             end
             
         end
