@@ -127,7 +127,7 @@ fold = 10;
 bin_size = round( no_sub/fold);
 
 error_flg = 0;
-addpath /mridata2/mri_group/xilin_data/from_cuda3/matlab_code/
+
 
 % select the scores to be combined
 com_flg=2;
